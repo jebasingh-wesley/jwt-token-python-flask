@@ -1,0 +1,74 @@
+mongodb install document
+------------------------------------------------------------
+wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
+sudo apt-get install gnupg
+
+wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
+
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
+
+sudo apt-get update
+
+sudo apt-get install -y mongodb-org
+
+echo "mongodb-org hold" | sudo dpkg --set-selections
+echo "mongodb-org-database hold" | sudo dpkg --set-selections
+echo "mongodb-org-server hold" | sudo dpkg --set-selections
+echo "mongodb-org-shell hold" | sudo dpkg --set-selections
+echo "mongodb-org-mongos hold" | sudo dpkg --set-selections
+echo "mongodb-org-tools hold" | sudo dpkg --set-selections
+
+sudo systemctl start mongod
+
+sudo systemctl daemon-reload
+
+sudo systemctl status mongod
+
+sudo systemctl enable mongod
+
+sudo systemctl stop mongod
+
+
+then type a below this command in your ubuntu terminal 
+---------------------------------------------------
+
+mongosh
+
+mongo db + python tutorial link
+--------------------------------------------------------
+
+reg:- https://towardsdatascience.com/using-mongo-databases-in-python-e93bc3b6ff5f
+
+
+mongosh terminal commands
+-----------------------------
+
+mongo --host localhost -u rasa -p rasa123 --authenticationDatabase rasa_db
+
+
+
+reg:-https://www.tutorialspoint.com/mongodb/mongodb_datatype.htm
+
+use rasa_db
+show dbs
+#db.createUser({user:"rasa", pwd:"rasa123", roles:[{role:"root", db:"rasa_db"}]})
+db.createUser({user: "rasa",pwd: "rasa123",roles:[{role: "userAdmin" , db:"rasa_db"}]})
+db.createUser({user: "rasa",pwd: "rasa123",roles:[{role: "root" , db:"admin"}]})
+
+
+db.dropUser("rasa", {w: "majority", wtimeout: 4000})
+db.getUser("rasa");
+
+use test_db
+db.dropDatabase()
+db.createCollection("student_table")
+db.createCollection("student_table", { capped : true, autoIndexID : true, size : 6142800, max : 10000 } )
+show collections
+db.student_data.insertOne({"name":"NSmoorthy","age":24})
+db.COLLECTION_NAME.drop()
+db.users.insert([{morethan data}]
+db.users.insertMany([{morethan data}]
+db.mycol.find()
+db.mycol.find().pretty()
+ db.mycol.findOne({title: "MongoDB Overview"})
+
